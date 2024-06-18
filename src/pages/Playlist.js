@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, StyleSheet, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import PlaylistModal from "../components/PlaylistModal";
 
 export default function Playlist() {
+    const [modalVisible, setModalVisible] = useState(false)
+
     return (
         <ScrollView style={styles.container}>
-            <TouchableOpacity style={styles.PlaylistBanner}>
+            <TouchableOpacity style={styles.PlayListBanner}>
                 <Text>Favoritos</Text>
                 <Text style={styles.audioCount}>0 Músicas</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => console.log("Adiconando playlist")} style={styles.container}>
-                <Text style={styles.PlaylistBtn}>+ Adicionar nova Playlist</Text>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Text style={styles.PlayListBtn}>+ Adicionar nova Playlist</Text>
             </TouchableOpacity>
+            <PlaylistModal visible={modalVisible}
+            onClose={() => setModalVisible(false)}/>
         </ScrollView>
     );
 }
@@ -21,7 +26,7 @@ const styles = StyleSheet.create({
     container: {
         padding: 20,
     },
-    PlaylistBanner: {
+    PlayListBanner: {
         padding: 5,
         backgroundColor: "#D0D1D3",
         borderRadius: 5,
@@ -32,7 +37,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
 
-    PlaylistBtn: {
+    PlayListBtn: {
         color: "#febc2a",
         letterSpacing: 1,
         fontWeight: "bold",
