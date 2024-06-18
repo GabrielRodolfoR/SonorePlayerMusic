@@ -7,12 +7,12 @@ export default function PlaylistModal({ visible, onClose }) {
 
     return (
         <Modal visible={visible} animationType="slide" transparent>
+            <TouchableWithoutFeedback onPress={onClose}>
+                <View style={Styles.modalBg}></View>
+            </TouchableWithoutFeedback>
             <View style={Styles.modalContainer}>
-                <TouchableWithoutFeedback onPress={onClose}>
-                    <View style={Styles.modalBg}></View>
-                </TouchableWithoutFeedback>
                 <View style={Styles.modalContent}>
-                <Text style={Styles.text}>Criar Nova Playlist</Text>
+                    <Text style={Styles.text}>Criar Nova Playlist</Text>
                     <View style={Styles.inputContainer}>
                         <TextInput style={Styles.input} />
                         <View style={Styles.submitContainer}>
@@ -30,21 +30,22 @@ const { width, height } = Dimensions.get("window");
 const Styles = StyleSheet.create({
     modalContainer: {
         flex: 1,
-        justifyContent: "flex-end",
+        justifyContent: "center",
+        alignItems: "center",
     },
     modalContent: {
-        backgroundColor: "#ffffff", // cor de fundo do modal
-        borderTopLeftRadius: 40,
-        borderTopRightRadius: 40,
+        backgroundColor: "#ffffff",
+        width: width - 40,
+        borderRadius: 20,
         paddingHorizontal: 20,
         paddingBottom: 20,
     },
     inputContainer: {
-        width: width - 40,
-        borderRadius: 40,
+        borderRadius: 20,
         backgroundColor: "#fff",
         justifyContent: "center",
         alignItems: "center",
+        paddingVertical: 20,
     },
     input: {
         width: "100%",
@@ -60,13 +61,18 @@ const Styles = StyleSheet.create({
         borderRadius: 50,
     },
     modalBg: {
-        flex: 1,
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     text: {
         color: "orange",
-        fontStyle: "bold",
+        fontWeight: "bold",
         fontSize: 20,
+        textAlign: "center",
+        marginTop: 20,
     },
 });
-''
